@@ -1,0 +1,22 @@
+{
+  "name": "18-backend-crudpragramacion",
+  "version": "1.0.0",
+  "description": "Backend del proyecto crud de programación, catalogo de servicios de programación",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "middlewares",
+    "routes",
+    "bd mongo"
+  ],
+  "author": "Arias Emilse",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1",
+    "morgan": "^1.10.1"
+  }
+}
