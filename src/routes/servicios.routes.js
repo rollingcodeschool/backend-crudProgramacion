@@ -7,6 +7,7 @@ const router = Router();
 // get - post -put o patch - delete
 
 router.route("/test").get(prueba)
+//http://localhost:3000/api/servicios/
 router.route('/').post(crearServicio)
 
 
