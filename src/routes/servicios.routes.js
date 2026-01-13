@@ -19,7 +19,7 @@ router.route("/").post([validacionServicio],crearServicio).get(listarServicios);
 router
   .route("/:id")
   .get(obtenerServicioId)
-  .put(editarServicio)
+  .put([validacionServicio],editarServicio)
   .delete(borrarServicio);
 
 export default router;
