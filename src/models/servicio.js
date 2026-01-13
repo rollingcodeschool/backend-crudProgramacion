@@ -20,7 +20,7 @@ const servicioSchema = new Schema(
       required: true,
       validate: {
         validator: (valor) => {
-          return /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?(\.(jpg|jpeg|png|webp))$/.test(
+          return /^https:\/\/.+\.(jpg|jpeg|png|gif|webp|bmp|svg)$/.test(
             valor
           );
         },
