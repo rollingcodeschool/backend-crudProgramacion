@@ -18,7 +18,10 @@ const validacionServicio = [
       if (!servicioExistente) {
         return true;
       }
-      // todo: corregir este paso cuando uno va a editar
+      // pregunta para validar si estoy editando el mismo servicio
+      if(req.params?.id && servicioExistente._id.toString() === req.params.id ){
+        return true
+      }
       throw new Error("El servicio ya existe en la base de datos");
     }),
   body("precio")
