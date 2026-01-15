@@ -8,6 +8,7 @@ import {
   prueba,
 } from "../controllers/servicios.controllers.js";
 import validacionServicio from "../middlewares/validacionServicio.js";
+import validacionIdServicio from "../middlewares/validacionIdServicio.js";
 
 const router = Router();
 //aqui diseñamos todas las rutas para trabajar con los servicios
@@ -19,7 +20,7 @@ router.route("/").post([validacionServicio],crearServicio).get(listarServicios);
 router
   .route("/:id")
   .get(obtenerServicioId)
-  .put([validacionServicio],editarServicio)
-  .delete(borrarServicio);
+  .put([validacionIdServicio, validacionServicio],editarServicio)
+  .delete(validacionIdServicio,borrarServicio);
 
 export default router;
