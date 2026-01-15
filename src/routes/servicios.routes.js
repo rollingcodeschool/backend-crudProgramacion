@@ -19,7 +19,7 @@ router.route("/test").get(prueba);
 router.route("/").post([validacionServicio],crearServicio).get(listarServicios);
 router
   .route("/:id")
-  .get(obtenerServicioId)
+  .get(validacionIdServicio,obtenerServicioId)
   .put([validacionIdServicio, validacionServicio],editarServicio)
   .delete(validacionIdServicio,borrarServicio);
 
