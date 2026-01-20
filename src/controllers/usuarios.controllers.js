@@ -20,16 +20,41 @@ export const crearUsuario = async (req, res) => {
   }
 };
 
-export const listarUsuarios = async(req, res) => {
-     try{
-        const listaUsuarios = await Usuario.find();
-        if(listaUsuarios.length === 0){
-            return res.status(404).json({mensaje: "No hay usuarios registrados"});
-        }
-        res.status(200).json(listaUsuarios);
-     }catch(error){
-         console.error(error);
-    res.status(500)
+export const listarUsuarios = async (req, res) => {
+  try {
+    const listaUsuarios = await Usuario.find();
+    if (listaUsuarios.length === 0) {
+      return res.status(404).json({ mensaje: "No hay usuarios registrados" });
+    }
+    res.status(200).json(listaUsuarios);
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
       .json({ mensaje: "Ocurrio un error al listar los usuarios" });
-     }
+  }
+};
+
+export const login = async (req, res) => {
+  try {
+    const {email, password} = req.body; //req.body.email
+    // verificar el email
+    const usuarioBuscado = await Usuario.findOne({email}); // await Usuario.findOne({email: req.body.email})
+    // no encontre al usuario buscado
+    if(!usuarioBuscado){
+        res.status(404).json({mensaje: 'No se encontro al usuario'})
+    }
+    // verificar el password
+    const passwordValido = bcrypt.compareSync(password, usuarioBuscado.password)
+    if(!passwordValido){
+        return res.status(401).json({mensaje: 'Credenciales incorrectas - password'})
+    }
+    // informar al front que debe loguear al usuario
+    // todo: agregar JWT
+    res.status(200).json({mensaje:'Login exitoso',nombre: usuarioBuscado.nombre})
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: "Ocurrio un error loguear el usuario" });
+  }
 };
