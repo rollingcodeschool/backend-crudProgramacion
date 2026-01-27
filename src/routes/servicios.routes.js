@@ -10,6 +10,8 @@ import {
 import validacionServicio from "../middlewares/validacionServicio.js";
 import validacionIdServicio from "../middlewares/validacionIdServicio.js";
 import verificarJWT from "../middlewares/verificarJWT.js";
+import upload from "../helpers/upload.js";
+import errorMulter from "../middlewares/errorMulter.js";
 
 const router = Router();
 //aqui diseñamos todas las rutas para trabajar con los servicios
@@ -17,7 +19,7 @@ const router = Router();
 
 router.route("/test").get(prueba);
 //http://localhost:3000/api/servicios
-router.route("/").post([verificarJWT,validacionServicio],crearServicio).get(listarServicios);
+router.route("/").post([verificarJWT,upload.single('imagen'), errorMulter,  validacionServicio],crearServicio).get(listarServicios);
 router
   .route("/:id")
   .get(validacionIdServicio,obtenerServicioId)

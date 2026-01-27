@@ -19,8 +19,11 @@ const validacionServicio = [
         return true;
       }
       // pregunta para validar si estoy editando el mismo servicio
-      if(req.params?.id && servicioExistente._id.toString() === req.params.id ){
-        return true
+      if (
+        req.params?.id &&
+        servicioExistente._id.toString() === req.params.id
+      ) {
+        return true;
       }
       throw new Error("El servicio ya existe en la base de datos");
     }),
@@ -34,15 +37,15 @@ const validacionServicio = [
       max: 1000000,
     })
     .withMessage("El precio debe estar entre $50 y $1000000"),
-  body("imagen")
-    .notEmpty()
-    .withMessage("La imagen es un dato obligatorio")
-    .isString()
-    .withMessage("La imagen debe ser una cadena de texto")
-    .matches(/^https:\/\/.+\.(jpg|jpeg|png|gif|webp|bmp|svg)$/)
-    .withMessage(
-      "La imagen debe ser una URL válida que termine con .jpg, .jpeg, .png, gif, .webp, bmp o svg"
-    ),
+  // body("imagen")
+  //   .notEmpty()
+  //   .withMessage("La imagen es un dato obligatorio")
+  //   .isString()
+  //   .withMessage("La imagen debe ser una cadena de texto")
+  //   .matches(/^https:\/\/.+\.(jpg|jpeg|png|gif|webp|bmp|svg)$/)
+  //   .withMessage(
+  //     "La imagen debe ser una URL válida que termine con .jpg, .jpeg, .png, gif, .webp, bmp o svg"
+  //   ),
   body("categoria")
     .notEmpty()
     .withMessage("La categoría es un dato obligatorio")
@@ -50,7 +53,7 @@ const validacionServicio = [
     .withMessage("La categoría debe ser una cadena de texto")
     .isIn(["Desarrollo Web", "Backend y API", "Consultoría", "Otros"])
     .withMessage(
-      `La categoría debe ser uno de los siguientes valores: 'Desarrollo Web', 'Backend y API', 'Consultoría' u 'Otros'`
+      `La categoría debe ser uno de los siguientes valores: 'Desarrollo Web', 'Backend y API', 'Consultoría' u 'Otros'`,
     ),
   body("descripcion_breve")
     .notEmpty()

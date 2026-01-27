@@ -1,3 +1,4 @@
+import subirImagenACloudinary from "../helpers/cloudinaryUploader.js";
 import Servicio from "../models/servicio.js";
 
 export const prueba = (req, res) => {
@@ -7,7 +8,19 @@ export const prueba = (req, res) => {
 
 export const crearServicio = async (req, res) => {
   try {
-    // agregar validacion de datos
+    // subir la imagen a cloudinary
+    let imagenUrl = "";
+    if (req.file) {
+      const resultado = await subirImagenACloudinary(req.file.buffer);
+      console.log(resultado)
+      imagenUrl = resultado.secure_url;
+    } else {
+      // agregar una imagen por defecto imagenUrl =''
+    }
+
+      req.body.imagen = imagenUrl
+//resto del controlador
+
     const servicioNuevo = new Servicio(req.body);
     await servicioNuevo.save();
     res.status(201).json({ mensaje: "El servicio fue creado correctamente" });
