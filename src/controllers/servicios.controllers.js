@@ -12,14 +12,16 @@ export const crearServicio = async (req, res) => {
     let imagenUrl = "";
     if (req.file) {
       const resultado = await subirImagenACloudinary(req.file.buffer);
-      console.log(resultado)
+      // console.log(resultado);
       imagenUrl = resultado.secure_url;
     } else {
       // agregar una imagen por defecto imagenUrl =''
+      imagenUrl =
+        "https://images.pexels.com/photos/5652023/pexels-photo-5652023.jpeg";
     }
 
-      req.body.imagen = imagenUrl
-//resto del controlador
+    req.body.imagen = imagenUrl;
+    //resto del controlador
 
     const servicioNuevo = new Servicio(req.body);
     await servicioNuevo.save();
