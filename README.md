@@ -140,3 +140,4 @@ proximamente
 - Arias Emilse
 
 
+<!-- https://localhost:5173/pago/exitoso?collection_id=143947955851&collection_status=approved&payment_id=143947955851&status=approved&external_reference=69820068a4af0045a510c5ab&payment_type=credit_card&merchant_order_id=37830205047&preference_id=2699307880-9b972bbe-6d44-43a8-a1a0-650fd6aebbed&site_id=MLA&processing_mode=aggregator&merchant_account_id=null -->
